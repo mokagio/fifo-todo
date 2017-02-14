@@ -1,5 +1,9 @@
 <h1>FIFO TODOs</h1>
 
+<%= render 'form' %>
+
+<hr/>
+
 <ul>
 <% @tasks.each do |task| %>
   <li>[<%= task.priority %>] <%= task.title %></li>
