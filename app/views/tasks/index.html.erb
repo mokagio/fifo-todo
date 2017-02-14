@@ -7,7 +7,7 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      [<%= task.priority %>] <%= task.title %> <%= link_to 'skip', skip_path(task), method: :put %>
+      [<%= task.priority %>] <%= task.title %> <%= link_to 'done', complete_path(task), method: :put %> <%= link_to 'skip', skip_path(task), method: :put %>
   </li>
 <% end %>
 </ul>
