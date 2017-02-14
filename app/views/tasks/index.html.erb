@@ -1,1 +1,7 @@
-<h1>Tasks coming soon...</h1>
+<h1>FIFO TODOs</h1>
+
+<ul>
+<% @tasks.each do |task| %>
+  <li>[<%= task.priority %>] <%= task.title %></li>
+<% end %>
+</ul>
