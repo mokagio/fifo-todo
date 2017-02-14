@@ -5,7 +5,9 @@
 <hr/>
 
 <ul>
-<% @tasks.each do |task| %>
-  <li>[<%= task.priority %>] <%= task.title %></li>
+  <% @tasks.each do |task| %>
+    <li>
+      [<%= task.priority %>] <%= task.title %> <%= link_to 'skip', skip_path(task), method: :put %>
+  </li>
 <% end %>
 </ul>

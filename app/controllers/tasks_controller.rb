@@ -13,6 +13,24 @@ class TasksController < ApplicationController
     redirect_to '#index'
   end
 
+  def skip
+    id = params[:id]
+    task = Task.find(id)
+
+    if task.nil?
+      flash[:error] = "Could not find task with id #{id}"
+      redirect_to '#index'
+    end
+
+    task.skip_count += 1
+
+    unless task.save!
+      flash[:error] = "Could not save task"
+    end
+
+    redirect_to '#index'
+  end
+
   private
 
   def task_params
