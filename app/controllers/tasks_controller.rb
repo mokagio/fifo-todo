@@ -53,6 +53,21 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :priority)
+    allowed_parameters = params.require(:task).permit(:title, :priority)
+
+    [
+      { keyword: ' h', priority: 3 },
+      { keyword: ' m', priority: 2 },
+      { keyword: ' l', priority: 1 },
+    ].
+    # TODO: make performant avoiding having to loop through the whole array
+    each do |m|
+      next unless allowed_parameters[:title].end_with? m[:keyword]
+
+      allowed_parameters[:title] = allowed_parameters[:title][0...-m[:keyword].length]
+      allowed_parameters[:priority] = m[:priority]
+    end
+
+    return allowed_parameters
   end
 end
